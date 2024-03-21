@@ -1,0 +1,10 @@
+Simpan data 
+
+type  ==> ATTLOG
+simpan data attlog
+
+type  ==> OPERLOG
+table ==> USER
+table ==> OPLOG
+simpan data user
+simpan data operation machine

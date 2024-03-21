@@ -1,0 +1,39 @@
+<IfModule mod_rewrite.c>
+    <IfModule mod_negotiation.c>
+        Options -MultiViews -Indexes
+    </IfModule>
+    <Files .env>
+        order allow,deny
+        Deny from all
+    </Files>
+    <IfModule mod_env.c>
+        # SetEnv APP_ENV production
+        # SetEnv APP_NAME "Easy ADMS"        
+        # SetEnv APP_KEY base64:crc1fFyDHhc3utKz65WrchCyN4qtYxyDJgdOUi5Zcq0=
+        # SetEnv APP_DEBUG false
+        # SetEnv APP_URL "http://192.168.1.100/iclock/public/"
+
+        # SetEnv DB_CONNECTION mysql
+        # SetEnv DB_HOST 127.0.0.1
+        # SetEnv DB_PORT 3306
+        # SetEnv DB_DATABASE easyiclock
+        # SetEnv DB_USERNAME root
+        # SetEnv DB_PASSWORD Ljp@123
+
+    </IfModule>
+    RewriteEngine On
+
+    # Handle Authorization Header
+    RewriteCond %{HTTP:Authorization} .
+    RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+
+    # Redirect Trailing Slashes If Not A Folder...
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_URI} (.+)/$
+    RewriteRule ^ %1 [L,R=301]
+
+    # Send Requests To Front Controller...
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^ index.php [L]
+</IfModule>
